@@ -1,6 +1,45 @@
 //document.body.textContent = "";
 
 var m1,m2,m3,m4;
+
+
+
+var observer = new MutationObserver((mutations) => {
+  mutations.forEach((mutation) => {
+    console.log(word);
+	try{
+		var noMax = document.getElementsByClassName('movebuttons-nomax')[0].querySelectorAll("button");
+		m1 = noMax[0].getAttribute("data-move");
+		m2 = noMax[1].getAttribute("data-move");
+		m3 = noMax[2].getAttribute("data-move");
+		m4 = noMax[3].getAttribute("data-move");
+	//tempWord = noMax.querySelectorAll("button")[0].getAttribute("data-move");
+	}
+	catch(err){
+		try{
+			var cantMax = document.getElementsByClassName('movemenu')[0].querySelectorAll("button");
+			m1 = cantMax[0].getAttribute("data-move");
+			m2 = cantMax[1].getAttribute("data-move");
+			m3 = cantMax[2].getAttribute("data-move");
+			m4 = cantMax[3].getAttribute("data-move");
+		}
+		catch(err){}
+	}
+	
+	word = m1 + m2 + m3 + m4;
+	
+	var OBbattleControls = document.getElementsByClassName('battle-log')[0];
+	var OBcalc = document.createTextNode(word);
+	OBbattleControls.appendChild(OBcalc);
+	
+  });
+});
+observer.observe(document.getElementsByClassName('battle-controls')[0], {
+  childList: true,
+  subtree: true
+});
+
+
 var tempWord = "t";
 
 try{
