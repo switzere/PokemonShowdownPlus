@@ -1,12 +1,16 @@
 //document.body.textContent = "";
 
 var m1,m2,m3,m4;
+//var div = document.createElement('div');
 
 
 
 var observer = new MutationObserver((mutations) => {
   mutations.forEach((mutation) => {
-    console.log(word);
+    
+	
+	var oldWord = word;
+	
 	try{
 		var noMax = document.getElementsByClassName('movebuttons-nomax')[0].querySelectorAll("button");
 		m1 = noMax[0].getAttribute("data-move");
@@ -27,10 +31,22 @@ var observer = new MutationObserver((mutations) => {
 	}
 	
 	word = m1 + m2 + m3 + m4;
+	console.log(oldWord + " - " + word);
 	
-	var OBbattleControls = document.getElementsByClassName('battle-log')[0];
-	var OBcalc = document.createTextNode(word);
-	OBbattleControls.appendChild(OBcalc);
+	if( oldWord !== word && word){
+	
+		var OBbattleControls = document.getElementsByClassName('battle-log')[0];
+		var OBcalc = document.createTextNode(word);
+		OBbattleControls.appendChild(OBcalc);
+		var div = document.createElement("div"); 
+		document.getElementsByClassName('controls')[0].appendChild(div); 
+		div.innerText = "test123";
+	
+	//document.body.appendChild(newDiv);
+	//div.innerText = "testing";
+
+	}
+	
 	
   });
 });
